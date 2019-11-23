@@ -7,6 +7,13 @@ var fs = require("fs");
 var PORT = 3000;
 var app = express();
 
+var friendList = [];
+module.exports = friendList;
+
+
+app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+});
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({
     extended: true
@@ -16,6 +23,9 @@ app.use(express.json());
 require('./app/routing/htmlRoutes.js')(app);
 require('./app/routing/apiRoutes.js')(app);
 
-app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
-});
+app.post("/api/friends", function (req, res) {
+    var newFriend = req.body;
+    friendList.push(newFriend);
+    return res.json(friendList);
+    console.log(newFriend);
+})

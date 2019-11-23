@@ -20,7 +20,7 @@
     <div class="container p-3">
         <h1>Survey Questions</h1>
         <hr>
-        <form class="survey">
+        <form class="survey" method="post">
             <h2>About You</h2>
             <div class="form-group" id="nameDiv">
                 <label for="name">Name (Required) </label>
@@ -32,38 +32,37 @@
             </div>
             <hr>
             <div id="questionsDiv">
+                <!-- Question 1  -->
+                <div class="form-group">
+                    <label for="Question 1" id="q1Div">
+                        Question 1: Your mind is always buzzing with unexplored ideas and plans.
+                    </label>
+                    <select class="form-control" id="q1optionsDiv">
+                        <option value="" selected>Choose...</option>
+                        <option value="1">1(Strongly Disagree)</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5(Strongly Agree)</option>
+                    </select>
+                </div>
+                <!-- Question 2  -->
+                <div class="form-group">
+                    <label for="Question 2">
+                        <h4>Question 2</h4>
+                    </label>
+                    <p>Generally speaking, you rely more on your experience than your imagination. </p>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option selected>Choose...</option>
+                        <option>1(Strongly Disagree)</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5(Strongly Agree)</option>
+                    </select>
+                </div>
+            </div>
 
-            </div>
-            <!-- Question 1  -->
-            <div class="form-group">
-                <label for="Question 1">
-                    <h4>Question 1</h4>
-                </label>
-                <p>Your mind is always buzzing with unexplored ideas and plans. </p>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option selected>Choose...</option>
-                    <option>1(Strongly Disagree)</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5(Strongly Agree)</option>
-                </select>
-            </div>
-            <!-- Question 2  -->
-            <div class="form-group">
-                <label for="Question 2">
-                    <h4>Question 2</h4>
-                </label>
-                <p>Generally speaking, you rely more on your experience than your imagination. </p>
-                <select class="form-control" id="exampleFormControlSelect1">
-                    <option selected>Choose...</option>
-                    <option>1(Strongly Disagree)</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5(Strongly Agree)</option>
-                </select>
-            </div>
             <input class="btn btn-primary" type="submit" value="Submit" id="submitBtn">
 
         </form>
@@ -76,14 +75,15 @@
 
     <script>
 
-        $("#submitBtn").on('click', function () {
-            // if (nameValid && phoneValid && emailValid && idValid) {
+        $("#submitBtn").on('click', function (e) {
+            e.preventDefault();
+
             var newFriend = {
                 name: $("#name-input").val().trim(),
                 image: $("#img-link").val().trim(),
             };
 
-            $.post("../data/friends.js", newFriend)
+            $.post("/api/friends", newFriend)
                 .then(function (data) {
                     console.log(data);
                     console.log("survey.html", data);
