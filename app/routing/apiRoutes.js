@@ -5,7 +5,7 @@ var fs = require("fs");
 var PORT = 3000;
 var app = express();
 
-var friendList = require('../../server.js');
+var friendsList = require('../data/friends');
 
 module.exports = function (app) {
 
@@ -14,6 +14,6 @@ module.exports = function (app) {
     // });
 
     app.get("/api/friends", function (req, res) {
-        return res.json(friendList);
+        return res.json(friendsList);
     })
 }

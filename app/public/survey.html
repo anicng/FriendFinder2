@@ -31,13 +31,13 @@
                 <input type="url" class="form-control" id="img-link">
             </div>
             <hr>
-            <div id="questionsDiv">
-                <!-- Question 1  -->
+            <!-- Question 1  -->
+            <div class="questionsDiv">
                 <div class="form-group">
                     <label for="Question 1" id="q1Div">
                         Question 1: Your mind is always buzzing with unexplored ideas and plans.
                     </label>
-                    <select class="form-control" id="q1optionsDiv">
+                    <select class="form-control" id="Q1">
                         <option value="" selected>Choose...</option>
                         <option value="1">1(Strongly Disagree)</option>
                         <option value="2">2</option>
@@ -48,17 +48,16 @@
                 </div>
                 <!-- Question 2  -->
                 <div class="form-group">
-                    <label for="Question 2">
-                        <h4>Question 2</h4>
+                    <label for="Question 2" id="q2Div">
+                        Question 2: Generally speaking, you rely more on your experience than your imagination.
                     </label>
-                    <p>Generally speaking, you rely more on your experience than your imagination. </p>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option selected>Choose...</option>
-                        <option>1(Strongly Disagree)</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5(Strongly Agree)</option>
+                    <select class="form-control test" id="Q2">
+                        <option value="" selected>Choose...</option>
+                        <option value="1">1(Strongly Disagree)</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5(Strongly Agree)</option>
                     </select>
                 </div>
             </div>
@@ -81,6 +80,10 @@
             var newFriend = {
                 name: $("#name-input").val().trim(),
                 image: $("#img-link").val().trim(),
+                score: [
+                    $('#Q1').val(),
+                    $('#Q2').val()
+                ]
             };
 
             $.post("/api/friends", newFriend)

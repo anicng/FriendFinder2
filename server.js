@@ -7,8 +7,7 @@ var fs = require("fs");
 var PORT = 3000;
 var app = express();
 
-var friendList = [];
-module.exports = friendList;
+var friendsList = require('./app/data/friends.js');
 
 
 app.listen(PORT, function () {
@@ -23,9 +22,9 @@ app.use(express.json());
 require('./app/routing/htmlRoutes.js')(app);
 require('./app/routing/apiRoutes.js')(app);
 
+
 app.post("/api/friends", function (req, res) {
     var newFriend = req.body;
-    friendList.push(newFriend);
-    return res.json(friendList);
-    console.log(newFriend);
+    friendsList.push(newFriend);
+    return res.json(friendsList);
 })
