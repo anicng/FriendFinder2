@@ -86,6 +86,11 @@
                 ]
             };
 
+            $('#name-input').val("");
+            $('#img-link').val("");
+            $('#Q1').val("");
+            $('#Q2').val("");
+
             $.post("/api/friends", newFriend)
                 .then(function (data) {
                     console.log(data);
